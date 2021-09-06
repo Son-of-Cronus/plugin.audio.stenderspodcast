@@ -37,7 +37,7 @@ def parse_page(page):
         # the item contains a link to a song containing '.mp3'
         if item['href'].find('.mp3') > 1:
             # Use picture for as album cover
-            album_cover = os.path.join(rootDir, 'resources/onenight.jpg')
+            album_cover = os.path.join(rootDir, 'resources/onenightstenders.jpg')
             # update dictionary with the album cover url, song filename, and song url
             songs.update({index: {'album_cover': album_cover, 'title': item['href'], 'url': '{0}{1}'.format(sample_page, item['href'])}})
             index += 1
