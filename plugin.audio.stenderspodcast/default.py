@@ -31,7 +31,7 @@ def parse_page(page):
     # <a href="some_url">some_text</a>
     for item in page.find_all('a'):
         # the item contains a link to an album cover
-       #$ if item['href'].find('.jpg') > 1:
+        # if item['href'].find('.jpg') > 1:
             # format the url for the album cover to include the site url and url encode any spaces
            # album_cover = '{0}{1}'.format(sample_page, item['href'].replace(' ', '%20'))
         # the item contains a link to a song containing '.mp3'
@@ -55,6 +55,8 @@ def build_song_list(songs):
         li.setProperty('IsPlayable', 'true')
         # build the plugin url for Kodi
         # Example: plugin://plugin.audio.example/?url=http%3A%2F%2Fwww.theaudiodb.com%2Ftestfiles%2F01-pablo_perez-your_ad_here.mp3&mode=stream&title=01-pablo_perez-your_ad_here.mp3
+        # Our source: https://podcasts.robstenders.nl/podcasts/onenightstenders/2021-09-03_(19-22)-one_night_stenders.mp3
+        # We need: plugin://plugin.audio.stenderspodcast/?url=https%3A%2F%2Fpodcasts.robstenders.nl%2Fpodcasts%2Fonenightstenders%2F2021-09-03_(19-22)-one_night_stenders.mp3
         url = build_url({'mode': 'stream', 'url': songs[song]['url'], 'title': songs[song]['title']})
         # add the current list item to a list
         song_list.append((url, li, False))
@@ -77,7 +79,7 @@ def main():
     
     # initial launch of add-on
     if mode is None:
-        # get the HTML for http://www.theaudiodb.com/testfiles/
+        # get the HTML for https://robstenders.nl/podcast/18/index
         page = get_page(sample_page)
         # get the content needed from the page
         content = parse_page(page)
